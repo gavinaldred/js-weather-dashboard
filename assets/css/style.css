@@ -27,11 +27,6 @@ color: white!important;
 .list-group-item-button {
 margin: 20px 0px;
 background-color: lightgray!important;
-color: black;
+color: black!important;
 
 };
-
-#search-button {
-    background-color: blue!important;
-    color: white;
-}
