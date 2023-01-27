@@ -1,3 +1,37 @@
 .card {
     margin: 10px 8px;
 }
+
+
+.jumbotron {
+    background-color: white!important;
+    border: 1px solid black;
+}
+
+.weather-header {
+    background-color: darkblue;
+}
+
+h1 {
+    font-weight: 700!important;
+}
+
+button {
+
+background: darkblue!important;
+margin-left: 5px;
+color: white!important;
+/* border-left: 2px white solid!important; */
+}
+
+.list-group-item-button {
+margin: 20px 0px;
+background-color: lightgray!important;
+color: black;
+
+};
+
+#search-button {
+    background-color: blue!important;
+    color: white;
+}

@@ -4,6 +4,7 @@
 
 var APIKey = "8a0b8a21179a203dc24ac4d2fef35efa";
 var city = "london"
+
 // Here we are building the URL we need to query the database
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city +"&appid=" + APIKey;
 
@@ -12,10 +13,7 @@ $.ajax({
     method: "GET"
   }).then(function(response) {
   
-    // Create CODE HERE to Log the queryURL
-    console.log(queryURL + APIKey)
-    // Create CODE HERE to log the resulting object
-    console.log(response)
+console.log(response)
     // Create CODE HERE to calculate the temperature (converted from Kelvin)
   
 // Get the submit button
@@ -30,6 +28,7 @@ submitButton.addEventListener("click", function(event) {
     // Set the text of the button to be the city name
     newButton.innerHTML = city;
     // Add a class to the button for styling
+    newButton.classList.add("list-group-item-button");
     newButton.classList.add("list-group-item");
     // Append the button to the history div
     document.getElementById("history").appendChild(newButton);
@@ -38,3 +37,17 @@ submitButton.addEventListener("click", function(event) {
 
   }); 
   
+
+      
+// Here we display the 5 days forecast for the current city.
+function forecast(cityid){
+cityid = city;
+  var queryForcastURL="https://api.openweathermap.org/data/2.5/forecast?q="+cityid+"&appid="+APIKey;
+  $.ajax({
+      url:queryForcastURL,
+      method:"GET"
+  })
+  console.log(cityid)
+}
+
+forecast()  
