@@ -14,11 +14,11 @@ You will use `localStorage` to store any persistent data. For more information o
  
 ## User Story
 
-```text
-AS A traveler
-I WANT to see the weather outlook for multiple cities
-SO THAT I can plan a trip accordingly
-```
+  ```text
+  AS A traveler
+  I WANT to see the weather outlook for multiple cities
+  SO THAT I can plan a trip accordingly
+  ```
 
 ## Acceptance Criteria
 

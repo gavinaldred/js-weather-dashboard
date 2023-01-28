@@ -1,7 +1,16 @@
 //Set up the API key
 var APIKey = "8a0b8a21179a203dc24ac4d2fef35efa";
-var city = "london";
+var city = "...";
 var searchResults = [];
+const date = new Date();
+
+let day = date.getDate();
+let month = date.getMonth() + 1;
+let year = date.getFullYear();
+
+// This arrangement can be altered based on how we want the date's format to appear.
+let currentDate = `${day}-${month}-${year}`;
+console.log(currentDate); // "17-6-2022"
 
 // Here we are building the URL we need to query the database
 var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city +"&appid=" + APIKey;
@@ -39,9 +48,16 @@ $.ajax({
           var currentTemp = response.list[0].main.temp;
           let currentWInd = response.list[0].wind.speed;
           let currentHumidity = response.list[0].main.humidity;
-          $("#currentTemp").append(currentTemp);
-          $("#currentWindSpeed").append(currentWInd);
-          $("#currentHumidity").append(currentHumidity)
+          let currentCityName = response.city.name + " " + currentDate;
+          var iconCode = searchResults.list[0].weather[0].icon;
+          var iconurl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+          $("#currentTemp").text(currentTemp);
+          $("#currentWindSpeed").text(currentWInd);
+          $("#currentHumidity").text(currentHumidity);
+          $("#currentCityName").text(currentCityName);    
+          $("#wicon").attr("src", iconurl);
+    
+
 
       });
   });
