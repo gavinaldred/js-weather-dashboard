@@ -4,7 +4,7 @@ var city = "london";
 var searchResults = [];
 
 // Here we are building the URL we need to query the database
-var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city +"&appid=" + APIKey;
+var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city +"&appid=" + APIKey;
 
 $.ajax({
   url: queryURL,
@@ -36,6 +36,13 @@ $.ajax({
           searchResults = response;
           //save searchResults array to localStorage
           localStorage.setItem("searchResults", JSON.stringify(searchResults));
+          var currentTemp = response.list[0].main.temp;
+          let currentWInd = response.list[0].wind.speed;
+          let currentHumidity = response.list[0].main.humidity;
+          $("#currentTemp").append(currentTemp);
+          $("#currentWindSpeed").append(currentWInd);
+          $("#currentHumidity").append(currentHumidity)
+
       });
   });
 
