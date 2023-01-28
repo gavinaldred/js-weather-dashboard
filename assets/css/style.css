@@ -30,3 +30,16 @@ background-color: lightgray!important;
 color: black!important;
 
 };
+
+
+
+.noBorderUL{
+    list-style: none!important;
+    list-style-type: none!important;
+}
+
+.noBorder {
+    list-style: none!important;
+    list-style-type: none!important;
+    margin: 10px;
+}

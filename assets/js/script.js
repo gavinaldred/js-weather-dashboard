@@ -11,13 +11,14 @@ $.ajax({
   method: "GET"
 }).then(function(response) {
   // Get the submit button
+  console.log(response)
   var submitButton = document.getElementById("search-button");
   submitButton.addEventListener("click", function(event) {
       event.preventDefault();
       // Get the city name from the input field
       city = document.getElementById("search-input").value;
       // Here we are building the URL we need to query the database
-      var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city +"&appid=" + APIKey;
+      var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city +"&appid=" + APIKey;
       $.ajax({
         url: queryURL,
         method: "GET"
@@ -25,14 +26,14 @@ $.ajax({
           // Create a new button element
           var newButton = document.createElement("button");
           // Set the text of the button to be the city name
-          newButton.innerHTML = response.name;
+          newButton.innerHTML = response.city.name;
           // Add a class to the button for styling
           newButton.classList.add("list-group-item-button");
           newButton.classList.add("list-group-item");
           // Append the button to the history div
           document.getElementById("history").appendChild(newButton);
           //save search results to array
-          searchResults.push(response);
+          searchResults = response;
           //save searchResults array to localStorage
           localStorage.setItem("searchResults", JSON.stringify(searchResults));
       });
@@ -56,7 +57,7 @@ location.reload();
       // Iterate over the searchResults array to create buttons for each city
       for (var i = 0; i < searchResults.length; i++) {
           var newButton = document.createElement("button");
-          newButton.innerHTML = searchResults[i].name;
+          newButton.innerHTML = searchResults[i].city.name;
           newButton.classList.add("list-group-item-button");
           newButton.classList.add("list-group-item");
           document.getElementById("history").appendChild(newButton);
