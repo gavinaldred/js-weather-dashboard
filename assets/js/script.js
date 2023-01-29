@@ -8,13 +8,31 @@ let day = date.getDate();
 let month = date.getMonth() + 1;
 let year = date.getFullYear();
 
+
+let forecastDateOne = new Date();
+forecastDateOne.setDate(forecastDateOne.getDate() + 1);
+
+let forecastDateTwo = new Date();
+forecastDateTwo.setDate(forecastDateTwo.getDate() + 2);
+
+let forecastDateThree = new Date();
+forecastDateThree.setDate(forecastDateThree.getDate() + 3);
+
+let forecastDateFour = new Date();
+forecastDateFour.setDate(forecastDateFour.getDate() + 4);
+
+let forecastDateFive = new Date();
+forecastDateFive.setDate(forecastDateFive.getDate() + 5);
+
+
+
 // This arrangement can be altered based on how we want the date's format to appear.
 let currentDate = `${day}-${month}-${year}`;
 console.log(currentDate); // "17-6-2022"
 
 // Here we are building the URL we need to query the database
 var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city +"&appid=" + APIKey;
-
+function weather () {
 $.ajax({
   url: queryURL,
   method: "GET"
@@ -33,7 +51,9 @@ $.ajax({
         method: "GET"
       }).then(function(response) {
           // Create a new button element
+    
           var newButton = document.createElement("button");
+       
           // Set the text of the button to be the city name
           newButton.innerHTML = response.city.name;
           // Add a class to the button for styling
@@ -44,46 +64,91 @@ $.ajax({
           //save search results to array
           searchResults = response;
           //save searchResults array to localStorage
-          localStorage.setItem("searchResults", JSON.stringify(searchResults));
-          var currentTemp = response.list[0].main.temp;
+          // localStorage.setItem("searchResults", JSON.stringify(newButton.innerHTML));
+          var currentTemp = (response.list[0].main.temp - 273.15).toFixed(2) + "°C";
           let currentWInd = response.list[0].wind.speed;
           let currentHumidity = response.list[0].main.humidity;
           let currentCityName = response.city.name + " " + currentDate;
+          let fiveTempOne = (response.list[7].main.temp - 273.15).toFixed(2) + "°C";
+          let fiveTempTwo = (response.list[15].main.temp - 273.15).toFixed(2) + "°C";
+          let fiveTempThree = (response.list[23].main.temp - 273.15).toFixed(2) + "°C";
+          let fiveTempFour = (response.list[31].main.temp - 273.15).toFixed(2) + "°C";
+          let fiveTempFive = (response.list[39].main.temp - 273.15).toFixed(2) + "°C";
+          //weather icons
           var iconCode = searchResults.list[0].weather[0].icon;
+          var iconCodeOne = searchResults.list[7].weather[0].icon;
+          var iconCodeTwo = searchResults.list[15].weather[0].icon;
+          var iconCodeThree = searchResults.list[23].weather[0].icon;
+          var iconCodeFour = searchResults.list[31].weather[0].icon;
+          var iconCodeFive = searchResults.list[39].weather[0].icon;
+            //weather icons
           var iconurl = "http://openweathermap.org/img/w/" + iconCode + ".png";
+          var iconurlOne = "http://openweathermap.org/img/w/" + iconCodeOne + ".png";
+          var iconurlTwo = "http://openweathermap.org/img/w/" + iconCodeTwo + ".png";
+          var iconurlThree = "http://openweathermap.org/img/w/" + iconCodeThree + ".png";
+          var iconurlFour = "http://openweathermap.org/img/w/" + iconCodeFour + ".png";
+          var iconurlFive = "http://openweathermap.org/img/w/" + iconCodeFive + ".png";
           $("#currentTemp").text(currentTemp);
           $("#currentWindSpeed").text(currentWInd);
           $("#currentHumidity").text(currentHumidity);
-          $("#currentCityName").text(currentCityName);    
+          $("#currentCityName").text(currentCityName);
+
+          // 5 day temps
+          $("#fiveTempOne").text(fiveTempOne);
+          $("#fiveTempTwo").text(fiveTempTwo);
+          $("#fiveTempThree").text(fiveTempThree);
+          $("#fiveTempFour").text(fiveTempFour);
+          $("#fiveTempFive").text(fiveTempFive);
+            //weather icons
           $("#wicon").attr("src", iconurl);
-    
+          $("#wiconOne").attr("src", iconurlOne);
+          $("#wiconTwo").attr("src", iconurlTwo);
+          $("#wiconThree").attr("src", iconurlThree);
+          $("#wiconFour").attr("src", iconurlFour);
+          $("#wiconFive").attr("src", iconurlFive);
+          
+          
+	  forecastDateOne = forecastDateOne.getDate() + "-" + (forecastDateOne.getMonth() + 1) + "-" + forecastDateOne.getFullYear();
+    forecastDateTwo = forecastDateTwo.getDate() + "-" + (forecastDateTwo.getMonth() + 1) + "-" + forecastDateTwo.getFullYear();
+    forecastDateThree = forecastDateThree.getDate() + "-" + (forecastDateThree.getMonth() + 1) + "-" + forecastDateThree.getFullYear();
+    forecastDateFour = forecastDateFour.getDate() + "-" + (forecastDateFour.getMonth() + 1) + "-" + forecastDateFour.getFullYear();
+    forecastDateFive = forecastDateFive.getDate() + "-" + (forecastDateFive.getMonth() + 1) + "-" + forecastDateFive.getFullYear();
+
+    $("#currentTemp").text(currentTemp);
+    $("#currentWindSpeed").text(currentWInd);
+    $("#currentHumidity").text(currentHumidity);
+    $("#currentCityName").text(currentCityName);    
+    $("#wicon").attr("src", iconurl);
+    $("#forecastDateOne").text(forecastDateOne);
+    $("#forecastDateTwo").text(forecastDateTwo);
+    $("#forecastDateThree").text(forecastDateThree);
+    $("#forecastDateFour").text(forecastDateFour);
+    $("#forecastDateFive").text(forecastDateFive);
+    // Get the city value of the new button
+
+
 
 
       });
   });
 
-  // Clear Searches button
-var clearButton = document.getElementById("clear-button");
-clearButton.addEventListener("click", function(event) {
-event.preventDefault();
-localStorage.removeItem("searchResults");
-searchResults = [];
-// Select all list items but not the clear results button
-$("#history li:not(#clear-button)").remove();
-location.reload();
-});
+  const clearButton = document.getElementById("clear-button");
+
+  clearButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    // Get all the search history buttons
+    const searchHistoryButtons = document.querySelectorAll(".list-group-item-button");
+    // Loop through the buttons and remove them one by one
+    for (let i = 0; i < searchHistoryButtons.length; i++) {
+      if (searchHistoryButtons[i] !== clearButton) {
+        searchHistoryButtons[i].remove();
+      }
+    }
+  });
   
 
-  //retrieve searchResults from localStorage
-  if(localStorage.getItem("searchResults")){
-      searchResults = JSON.parse(localStorage.getItem("searchResults"));
-      // Iterate over the searchResults array to create buttons for each city
-      for (var i = 0; i < searchResults.length; i++) {
-          var newButton = document.createElement("button");
-          newButton.innerHTML = searchResults[i].city.name;
-          newButton.classList.add("list-group-item-button");
-          newButton.classList.add("list-group-item");
-          document.getElementById("history").appendChild(newButton);
-      }
-  }
-});
+
+  
+
+})};
+weather()

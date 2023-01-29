@@ -27,7 +27,7 @@ color: white!important;
 .list-group-item-button {
 margin: 20px 0px;
 background-color: lightgray!important;
-color: black!important;
+color: white!important;
 
 };
 
@@ -42,4 +42,25 @@ color: black!important;
     list-style: none!important;
     list-style-type: none!important;
     margin: 10px;
+}
+
+.card-body {
+    background-color: darkblue;
+}
+
+
+
+.list-group-item {
+
+    background-color: darkblue!important;
+    color: white;
+    border: none !important;
+}
+
+.card {
+    border: none!important;
+}
+
+.card-title {
+    color: white;
 }
