@@ -1,3 +1,4 @@
+
 //Set up the API key
 var APIKey = "8a0b8a21179a203dc24ac4d2fef35efa";
 var city = "...";
@@ -69,11 +70,29 @@ $.ajax({
           let currentWInd = response.list[0].wind.speed;
           let currentHumidity = response.list[0].main.humidity;
           let currentCityName = response.city.name + " " + currentDate;
+
+          // Five day temp
           let fiveTempOne = (response.list[7].main.temp - 273.15).toFixed(2) + "°C";
           let fiveTempTwo = (response.list[15].main.temp - 273.15).toFixed(2) + "°C";
           let fiveTempThree = (response.list[23].main.temp - 273.15).toFixed(2) + "°C";
           let fiveTempFour = (response.list[31].main.temp - 273.15).toFixed(2) + "°C";
           let fiveTempFive = (response.list[39].main.temp - 273.15).toFixed(2) + "°C";
+
+          //five day windspeed
+          let fiveWindSpeedOne = response.list[7].wind.speed;
+          let fiveWindSpeedTwo = response.list[15].wind.speed;
+          let fiveWindSpeedThree = response.list[23].wind.speed;
+          let fiveWindSpeedFour = response.list[31].wind.speed;
+          let fiveWindSpeedFive = response.list[39].wind.speed;
+
+          // five day humidity
+
+          let fiveHumidityOne  = response.list[7].main.humidity;
+          let fiveHumidityTwo  = response.list[15].main.humidity;
+          let fiveHumidityThree  = response.list[23].main.humidity;
+          let fiveHumidityFour  = response.list[31].main.humidity;
+          let fiveHumidityFive  = response.list[39].main.humidity;
+
           //weather icons
           var iconCode = searchResults.list[0].weather[0].icon;
           var iconCodeOne = searchResults.list[7].weather[0].icon;
@@ -99,6 +118,21 @@ $.ajax({
           $("#fiveTempThree").text(fiveTempThree);
           $("#fiveTempFour").text(fiveTempFour);
           $("#fiveTempFive").text(fiveTempFive);
+
+          // 5 day windspeed
+          $("#fiveWindSpeedOne").text(fiveWindSpeedOne);
+          $("#fiveWindSpeedTwo").text(fiveWindSpeedTwo);
+          $("#fiveWindSpeedThree").text(fiveWindSpeedThree);
+          $("#fiveWindSpeedFour").text(fiveWindSpeedFour);
+          $("#fiveWindSpeedFive").text(fiveWindSpeedFive);
+
+          // 5 day humidity
+          $("#fiveHumidityOne").text(fiveHumidityOne);
+          $("#fiveHumidityTwo").text(fiveHumidityOne);
+          $("#fiveHumidityThree").text(fiveHumidityOne);
+          $("#fiveHumidityFour").text(fiveHumidityOne);
+          $("#fiveHumidityFive").text(fiveHumidityOne);
+
             //weather icons
           $("#wicon").attr("src", iconurl);
           $("#wiconOne").attr("src", iconurlOne);
@@ -147,8 +181,39 @@ $.ajax({
   });
   
 
+  
 
   
 
 })};
 weather()
+
+
+/// doesn't work! :(
+// $(document).ready(function(){
+//   $('.list-group-item').click(function(){
+//   // Get the city name from the clicked button
+//   var city = $(this).text();
+//   var queryURL2 = "https://api.openweathermap.org/data/2.5/forecast?q=" + city +"&appid=" + APIKey;
+//   // Get the forecast details for the selected city
+//     $.ajax({
+//       url: queryURL2,
+//       method: "GET",
+//       success: function(data){
+//         // Update the content of the page with the retrieved forecast details
+//         $('#currentCityName').text(city);
+//         $('#currentTemp').text(data.temp);
+//         $('#currentWindSpeed').text(data.windSpeed);
+//         $('#currentHumidity').text(data.humidity);
+        
+//         // Update the five-day forecast
+//         $('#forecastDateOne').text(data.forecast[0].date);
+//         $('#fiveTempOne').text(data.forecast[0].temp);
+//         $('#fiveWindSpeedOne').text(data.forecast[0].windSpeed);
+//         $('#fiveHumidityOne').text(data.forecast[0].humidity);
+        
+//         // Continue updating the rest of the forecast data
+//       }
+//     });
+//   });
+// });
