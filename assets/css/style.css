@@ -1,66 +1,58 @@
 .card {
-    margin: 10px 8px;
+  margin: 10px 8px;
 }
 
-
 .jumbotron {
-    background-color: white!important;
-    border: 1px solid black;
+  background-color: white !important;
+  border: 1px solid black;
 }
 
 .weather-header {
-    background-color: darkblue;
+  background-color: darkblue;
 }
 
 h1 {
-    font-weight: 700!important;
+  font-weight: 700 !important;
 }
 
 button {
-
-background: darkblue!important;
-margin-left: 5px;
-color: white!important;
-/* border-left: 2px white solid!important; */
+  background: darkblue !important;
+  margin-left: 5px;
+  color: white !important;
+  /* border-left: 2px white solid!important; */
 }
 
 .list-group-item-button {
-margin: 20px 0px;
-background-color: lightgray!important;
-color: white!important;
+  margin: 20px 0px;
+  background-color: lightgray !important;
+  color: white !important;
+}
 
-};
-
-
-
-.noBorderUL{
-    list-style: none!important;
-    list-style-type: none!important;
+.noBorderUL {
+  list-style: none !important;
+  list-style-type: none !important;
 }
 
 .noBorder {
-    list-style: none!important;
-    list-style-type: none!important;
-    margin: 10px;
+  list-style: none !important;
+  list-style-type: none !important;
+  margin: 10px;
 }
 
 .card-body {
-    background-color: darkblue;
+  background-color: darkblue;
 }
 
-
-
 .list-group-item {
-
-    background-color: darkblue!important;
-    color: white;
-    border: none !important;
+  background-color: darkblue !important;
+  color: white;
+  border: none !important;
 }
 
 .card {
-    border: none!important;
+  border: none !important;
 }
 
 .card-title {
-    color: white;
+  color: white;
 }
