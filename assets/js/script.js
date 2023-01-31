@@ -7,7 +7,7 @@ const date = new Date();
 let day = date.getDate();
 let month = date.getMonth() + 1;
 let year = date.getFullYear();
-
+// shows the dates
 let forecastDateOne = new Date();
 forecastDateOne.setDate(forecastDateOne.getDate() + 1);
 
@@ -140,10 +140,10 @@ $.ajax({
 
       // 5 day humidity
       $("#fiveHumidityOne").text(fiveHumidityOne);
-      $("#fiveHumidityTwo").text(fiveHumidityOne);
-      $("#fiveHumidityThree").text(fiveHumidityOne);
-      $("#fiveHumidityFour").text(fiveHumidityOne);
-      $("#fiveHumidityFive").text(fiveHumidityOne);
+      $("#fiveHumidityTwo").text(fiveHumidityTwo);
+      $("#fiveHumidityThree").text(fiveHumidityThree);
+      $("#fiveHumidityFour").text(fiveHumidityFour);
+      $("#fiveHumidityFive").text(fiveHumidityFive);
 
       //weather icons
       $("#wicon").attr("src", iconurl);
@@ -183,21 +183,22 @@ $.ajax({
         (forecastDateFive.getMonth() + 1) +
         "-" +
         forecastDateFive.getFullYear();
-
+      //main day weather info
       $("#currentTemp").text(currentTemp);
       $("#currentWindSpeed").text(currentWInd);
       $("#currentHumidity").text(currentHumidity);
       $("#currentCityName").text(currentCityName);
       $("#wicon").attr("src", iconurl);
+      // dates work
       $("#forecastDateOne").text(forecastDateOne);
       $("#forecastDateTwo").text(forecastDateTwo);
       $("#forecastDateThree").text(forecastDateThree);
       $("#forecastDateFour").text(forecastDateFour);
       $("#forecastDateFive").text(forecastDateFive);
-      // Get the city value of the new button
+      
     });
   });
-
+//clear button
   const clearButton = document.getElementById("clear-button");
 
   clearButton.addEventListener("click", function (event) {
@@ -206,7 +207,7 @@ $.ajax({
     const searchHistoryButtons = document.querySelectorAll(
       ".list-group-item-button"
     );
-    // Loop through the buttons and remove them one by one
+    // Loop through the buttons and remove them one by one  except the clear buttons
     for (let i = 0; i < searchHistoryButtons.length; i++) {
       if (searchHistoryButtons[i] !== clearButton) {
         searchHistoryButtons[i].remove();
