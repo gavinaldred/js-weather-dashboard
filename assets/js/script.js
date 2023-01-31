@@ -203,6 +203,7 @@ $.ajax({
 
   clearButton.addEventListener("click", function (event) {
     event.preventDefault();
+    location.reload();
     // Get all the search history buttons
     const searchHistoryButtons = document.querySelectorAll(
       ".list-group-item-button"
